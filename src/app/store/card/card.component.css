@@ -8,6 +8,7 @@
     transition: 0.3s;
     cursor: pointer;
     clip-path: polygon(90% 0, 100% 7%, 100% 100%, 0 100%, 0 0);
+    border: none;
 }
 
 .card:hover {

@@ -2,3 +2,7 @@ button{
     transition: 0.5s;
     font-family: "Roboto";
 }
+
+.colorNav{
+    background: #0E1421;
+}
