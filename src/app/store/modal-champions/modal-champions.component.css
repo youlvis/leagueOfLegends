@@ -5,18 +5,6 @@
     width: 100%;
 }
 
-.closeAlert {
-    position: absolute;
-    right: 0;
-    top: 0;
-}
-
-button {
-    background: transparent;
-    border: none;
-}
-
-
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
 
 * {
@@ -36,14 +24,14 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 650px;
+    width: 100%;
     display: flex;
     box-shadow: 0 1px 20px 0 rgba(69, 90, 100, .08);
 }
 
 .wrapper .left {
-    width: 50%;
-    background: linear-gradient(to right, #006680, #80aab4);
+    width: 60%;
+    background: linear-gradient(to left, #006680, #80aab4);
     padding: 30px 25px;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
@@ -52,11 +40,19 @@ body {
 }
 
 .wrapper .left img {
-    margin-top: 1px;
+    margin-top: 20px;
     border-radius: 5px;
     margin-bottom: auto;
-    width: 200px;
-    height: auto;
+    width: 90%;
+    height: 80%;
+}
+
+h6 {
+    margin-top: 10px;
+    font-family: sans-serif;
+    font-weight: 100%;
+    font-style: italic;
+    font-size: 15px;
 }
 
 .wrapper .left h4 {
@@ -65,22 +61,23 @@ body {
     font-family: sans-serif;
     font-weight: 700;
     font-style: italic;
-    font-size: 20px;
+    font-size: 25px;
 }
 
-.wrapper .left div {
-    font-size: 13px;
-    height: 100px;
+p {
+    font-size: 15px;
+    height: 270px;
     overflow-y: auto;
+
 }
 
-.wrapper .left div::-webkit-scrollbar {
+p::-webkit-scrollbar {
     width: 4px;
     background: transparent;
 }
 
-.wrapper .left div::-webkit-scrollbar-thumb {
-    background: #5a7a81;
+P::-webkit-scrollbar-thumb {
+    background: #d1d4d4;
     border-radius: 5px;
 }
 
@@ -107,35 +104,16 @@ body {
     letter-spacing: 5px;
 }
 
-.wrapper .right .info_data,
 .wrapper .right .projects_data {
     display: flex;
     justify-content: space-between;
-}
-
-.wrapper .right .info_data .data,
-.wrapper .right .projects_data .data {
-    width: 45%;
-}
-
-.wrapper .right .info_data .data h4,
-.wrapper .right .projects_data .data h4 {
-    color: #353c4e;
-    margin-bottom: 5px;
-}
-
-.wrapper .right .info_data .data p,
-.wrapper .right .projects_data .data p {
-    font-size: 13px;
-    margin-bottom: 10px;
-    color: #919aa3;
 }
 
 .wrapper .social_media ul {
     display: flex;
 }
 
-.wrapper .social_media ul li {
+.wrapper .social_media ul li img {
     width: 45px;
     height: 45px;
     background: linear-gradient(to right, #0f6a6b, #689899);
@@ -150,3 +128,39 @@ body {
     display: block;
     font-size: 18px;
 }
+
+ul li .content {
+    position: absolute;
+    box-orient: 55px;
+    width: 190px;
+    height: 150px;
+    background: #dafafa;
+    padding: 5px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    visibility: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
+    opacity: 0;
+    transition: 0s;
+    font-family: 'Josefin Sans';
+    font-size: 15px;
+    font-style: italic;
+}
+
+ul li .content::-webkit-scrollbar {
+    width: 4px;
+    background: transparent;
+}
+
+ul li .content::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 2px;
+}
+
+ul li:hover .content {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(-50%) translateY(0%);
+}
+

@@ -5,10 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from './store/store.module';
-import { NavbarComponent } from './navbar/navbar.component';
-import { ButtonComponent } from './navbar/button/button.component';
 import { NavbarModule } from './navbar/navbar.module';
-import { ModalChampionsComponent } from './store/modal-champions/modal-champions.component';
+
+import { ContentfulService } from "../service/contentful.service";
 
 @NgModule({
   declarations: [
@@ -21,7 +20,7 @@ import { ModalChampionsComponent } from './store/modal-champions/modal-champions
     BrowserModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [ContentfulService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,7 @@
+import { Inject } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-modal-champions',
@@ -8,12 +10,15 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class ModalChampionsComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) { }
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    
   }
 
-  closeModal(){
+  closeModal() {
     this.dialog.closeAll();
   }
 

@@ -1,59 +1,86 @@
 <div class="container-modal">
-    <aside>
-        <div class="wrapper">
-            <div class="left">
-                <img src="assets/akali.jpg" alt="user">
-                <h4>Akali</h4>
-                <div class="container">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Doloremque odit accusamus dicta eveniet omnis nesciunt
-                        tenetur ullam temporibus quas, ex veniam deleniti fuga nisi,
-                        asperiores sed quo reprehenderit officiis obcaecati.
-                        lo
-                        Doloremque odit accusamus dicta eveniet omnis nesciunt
-                        tenetur ullam temporibus quas, ex veniam deleniti fuga nisi,
-                        asperiores sed quo reprehenderit officiis obcaecati.
-                        lo
-                    </p>
-                </div>
-            </div>
-            <div class="right">
-                <div class="info">
-                    <h3>Data</h3>
-                    <div class="info_data">
-                        <div class="data">
-                            <h4>Email</h4>
-                            <p>alex@gmail.com</p>
-                        </div>
-                        <div class="data">
-                            <h4>Phone</h4>
-                            <p>0001-213-998761</p>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="projects">
-                    <h3>Projects</h3>
-                    <div class="projects_data">
-                        <div class="data">
-                            <h4>Recent</h4>
-                            <p>Lorem ipsum dolor sit amet.</p>
-                        </div>
-                        <div class="data">
-                            <h4>Most Viewed</h4>
-                            <p>dolor sit amet.</p>
-                        </div>
-                    </div>
-                </div>
-
+    <div class="wrapper">
+        <div class="left">
+            <img [src]='data.champ.fields.championImage.fields.file.url' alt="user">
+            <h6>{{data.champ.fields.championNickName}}</h6>
+            <h4>{{data.champ.fields.championName}}</h4>
+        </div>
+        <div class="right">
+            <div class="info">
+                <h3>HABILIDADES</h3>
                 <div class="social_media">
                     <ul>
-                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                        <li>
+                            <img [src]="data.champ.fields.championSkillImage[0].fields.file.url" alt="">
+                            <div class="content">
+                                <h6>
+                                    {{data.champ.fields.championSkillImage[0].fields.title}}
+                                </h6>
+                                <span>
+                                    {{data.champ.fields.championSkillImage[0].fields.description}}
+                                </span>
+                            </div>
+                        </li>
+                        <li>
+                            <img [src]="data.champ.fields.championSkillImage[1].fields.file.url" alt="">
+                            <div class="content">
+                                <h6>
+                                    {{data.champ.fields.championSkillImage[1].fields.title}}
+                                </h6>
+                                <span>
+                                    {{data.champ.fields.championSkillImage[1].fields.description}}
+                                </span>
+                            </div>
+                        </li>
+                        <li>
+                            <img [src]="data.champ.fields.championSkillImage[2].fields.file.url" alt="">
+                            <div class="content">
+                                <h6>
+                                    {{data.champ.fields.championSkillImage[2].fields.title}}
+                                </h6>
+                                <span>
+                                    {{data.champ.fields.championSkillImage[2].fields.description}}
+                                </span>
+                            </div>
+                        </li>
+                        <li>
+                            <img [src]="data.champ.fields.championSkillImage[3].fields.file.url" alt="">
+                            <div class="content">
+                                <h6>
+                                    {{data.champ.fields.championSkillImage[3].fields.title}}
+                                </h6>
+                                <span>
+                                    {{data.champ.fields.championSkillImage[3].fields.description}}
+                                </span>
+                            </div>
+                        </li>
+                        <li>
+                            <img [src]="data.champ.fields.championSkillImage[4].fields.file.url" alt="">
+                            <div class="content">
+                                <h6>
+                                    {{data.champ.fields.championSkillImage[4].fields.title}}
+                                </h6>
+                                <span>
+                                    {{data.champ.fields.championSkillImage[4].fields.description}}
+                                </span>
+                            </div>
+                        </li>
                     </ul>
+                </div>
+
+            </div>
+
+            <div class="projects">
+                <div class="projects_data">
+                    <div>
+                        <p>
+                            {{data.champ.fields.championDescription.content[0].content[0].value}}
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
-    </aside>
+    </div>
+
 </div>
