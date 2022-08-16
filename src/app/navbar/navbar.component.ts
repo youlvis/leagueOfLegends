@@ -16,4 +16,9 @@ export class NavbarComponent implements OnInit {
     window.open("https://login.lol-web.games", "_self");
   }
 
+  logging() {
+    const location = window.location.href;
+    return location.includes('code');
+  }
+
 }

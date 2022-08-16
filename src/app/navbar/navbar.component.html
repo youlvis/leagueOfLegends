@@ -13,7 +13,14 @@
                     <app-search></app-search>
                 </li>
             </ul>
-            <button type="button" class="btn btn-outline-light" (click)="openLogin()">Iniciar Sesión</button>
+            <div *ngIf="!logging()">
+                <button type="button" class="btn btn-outline-light" (click)="openLogin()">Iniciar Sesión</button>
+            </div>
+
+            <div *ngIf="logging()">
+                <app-button></app-button>
+            </div>
+
         </div>
     </div>
 </div>

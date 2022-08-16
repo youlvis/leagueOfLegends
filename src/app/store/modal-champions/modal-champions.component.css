@@ -134,6 +134,7 @@ P::-webkit-scrollbar-thumb {
    
     margin-right: 10px;
     text-align: center;
+    cursor: pointer;
     
 }
 
