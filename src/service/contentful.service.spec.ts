@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ContentfulService } from '../service/contentful.service';
+import { ContentfulService } from './contentful.service';
 
 describe('ContentfulService', () => {
   let service: ContentfulService;

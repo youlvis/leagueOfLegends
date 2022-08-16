@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ContentfulService } from "../../../service/contentful.service";
 import { Entry } from 'contentful';
-import { Observable } from 'rxjs';
 import { ModalChampionsComponent } from '../modal-champions/modal-champions.component';
 
 @Component({
@@ -22,6 +21,8 @@ export class CardComponent implements OnInit {
   }
 
   openModal(enterAnimationDuration: string, exitAnimationDuration: string, champ: Entry<any>): void {
+    
+
     this.dialog.open(ModalChampionsComponent, {
       width: '800px',
       height: '500px',

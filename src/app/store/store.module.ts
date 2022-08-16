@@ -14,7 +14,6 @@ import { ModalChampionsComponent } from './modal-champions/modal-champions.compo
   imports: [
     CommonModule,
     MatDialogModule,
-
   ],
   exports: [
     CardComponent,
