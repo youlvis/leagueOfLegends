@@ -123,15 +123,11 @@ P::-webkit-scrollbar-thumb {
     letter-spacing: 5px;
 }
 
-.wrapper .right .projects_data {
-    display: flex;
-    justify-content: space-between;
-}
-
 .wrapper .social_media ul {
     margin-bottom: 15px;
     padding-bottom: 10px;
     display: flex;
+    border-bottom: 1px solid #adacac;
 }
 
 .wrapper .social_media ul li {
