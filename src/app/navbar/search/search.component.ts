@@ -26,12 +26,15 @@ export class SearchComponent implements OnInit {
   getChamp(name: string) {
     name = name.trim().toUpperCase()
     this.i = 0;
-    while (this.i < this.lolChampions.length && !(name == this.lolChampions[this.i].fields.championName)) this.i++
+    //console.log(this.lolChampions[this.i])
+    while (this.i < this.lolChampions.length && name != this.lolChampions[this.i].fields.championName.trim().toUpperCase()) this.i++
 
-    if (this.i < 20) {
+
+    if (this.i < this.lolChampions.length) {
+      console.log(this.i)
       this.openModal("500ms", "500ms", this.lolChampions[this.i])
-    } else{
-      
+    } else {
+
     }
   }
 
