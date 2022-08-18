@@ -1,16 +1,14 @@
-<div >
+<div class="margen ">
 
-    <div class="container margen ">
+    <div class="row justify-content-center">
 
-        <div class="row justify-content-center">
+        <div *ngFor="let champion of lolChampions; let i=index" class="card"
+            (click)="openModal('500ms', '500ms', champion)">
+            <img [src]='champion.fields.championImage.fields.file.url'
+                [alt]="champion.fields.championName">
+            <span>{{champion.fields.championName}}</span>
+        </div>
 
-            <div *ngFor="let champion of lolChampions; let i=index" class="card" (click)="openModal('500ms', '500ms', champion)">
-                <img [src]='champion.fields.championImage.fields.file.url' [alt]="champion.fields.championName">
-                <span>{{champion.fields.championName}}</span>
-            </div>
-            
-        </div> 
-        
     </div>
 
 </div>

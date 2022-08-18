@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
 import { createClient, Entry } from 'contentful';
 
-import { from } from "rxjs";
-
-
 const CONFIG = {
   space: '3z392wln8jjc',
   accessToken:
@@ -31,7 +28,6 @@ export class ContentfulService {
     return this.cdaClient.getEntries(Object.assign({
       content_type: CONFIG.contentTypeIds.lolChampions
     }, query))
-    .then(res => res.items);
+      .then(res => res.items);
   }
-
 }

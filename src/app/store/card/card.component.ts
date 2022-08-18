@@ -21,8 +21,6 @@ export class CardComponent implements OnInit {
   }
 
   openModal(enterAnimationDuration: string, exitAnimationDuration: string, champ: Entry<any>): void {
-    
-
     this.dialog.open(ModalChampionsComponent, {
       width: '800px',
       height: '500px',
