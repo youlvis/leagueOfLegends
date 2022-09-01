@@ -8,17 +8,19 @@ import { StoreModule } from './store/store.module';
 import { NavbarModule } from './navbar/navbar.module';
 
 import { ContentfulService } from "../service/contentful.service";
+import { ChampionModule } from './champion/champion.module';
 
 @NgModule({
   declarations: [
     AppComponent,
   ],
   imports: [
+    AppRoutingModule,
     StoreModule,
     NavbarModule,
+    ChampionModule,
     BrowserAnimationsModule,
     BrowserModule,
-    AppRoutingModule,
   ],
   providers: [ContentfulService],
   bootstrap: [AppComponent]

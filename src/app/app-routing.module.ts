@@ -1,13 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CoverChampComponent } from './champion/cover-champ/cover-champ.component';
 import { CardComponent } from './store/card/card.component';
 
 const routes: Routes = [
+
   {
     path: '',
     component: CardComponent,
     pathMatch: 'full'
   },
+
+  {
+    path: 'champion/:id',
+    component: CoverChampComponent,
+  }
 
 ];
 

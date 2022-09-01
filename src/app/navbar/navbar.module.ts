@@ -11,7 +11,7 @@ import { MatDialogModule } from '@angular/material/dialog';
   declarations: [
     ButtonComponent,
     SearchComponent,
-    NavbarComponent
+    NavbarComponent,
   ],
   imports: [
     CommonModule,

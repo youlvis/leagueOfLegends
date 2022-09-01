@@ -11,8 +11,6 @@ const CONFIG = {
   },
 };
 
-
-
 @Injectable()
 export class ContentfulService {
 
@@ -21,13 +19,16 @@ export class ContentfulService {
     accessToken: CONFIG.accessToken
   });
 
-
-  constructor() { }
-
   getChampions(query?: object): Promise<Entry<any>[]> {
     return this.cdaClient.getEntries(Object.assign({
       content_type: CONFIG.contentTypeIds.lolChampions
     }, query))
       .then(res => res.items);
   }
+
+  async getChampionId(id: string) {
+    const entry = await this.cdaClient.getEntry(id)
+    return entry.fields;
+  }
+
 }

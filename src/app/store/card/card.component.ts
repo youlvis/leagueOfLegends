@@ -11,7 +11,7 @@ import { ModalChampionsComponent } from '../modal-champions/modal-champions.comp
 })
 export class CardComponent implements OnInit {
 
-  constructor(public dialog: MatDialog, private contentfulService: ContentfulService) { }
+  constructor(public dialog: MatDialog, private contentfulService: ContentfulService,) { }
 
   public lolChampions: Entry<any>[] = [];
 

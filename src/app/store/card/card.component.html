@@ -2,11 +2,13 @@
 
     <div class="row justify-content-center">
 
-        <div *ngFor="let champion of lolChampions; let i=index" class="card"
-            (click)="openModal('500ms', '500ms', champion)">
-            <img [src]='champion.fields.championImage.fields.file.url'
-                [alt]="champion.fields.championName">
-            <span>{{champion.fields.championName}}</span>
+        <div *ngFor="let champion of lolChampions;" class="card">
+
+            <a [routerLink]="['champion', champion.sys.id]">
+                <img src='{{champion.fields.championImage.fields.file.url}}' [alt]="champion.fields.championName">
+                <span>{{champion.fields.championName}}</span>
+            </a>
+            
         </div>
 
     </div>
