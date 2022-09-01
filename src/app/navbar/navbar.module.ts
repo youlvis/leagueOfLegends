@@ -4,6 +4,7 @@ import { ButtonComponent } from './button/button.component';
 import { SearchComponent } from './search/search.component';
 import { NavbarComponent } from './navbar.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -16,6 +17,7 @@ import { MatDialogModule } from '@angular/material/dialog';
   imports: [
     CommonModule,
     MatDialogModule,
+    RouterModule
   ],
   exports: [
     NavbarComponent

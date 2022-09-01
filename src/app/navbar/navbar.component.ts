@@ -18,7 +18,7 @@ export class NavbarComponent implements OnInit {
 
   logging() {
     const location = window.location.href;
-    return location.includes('code');
+    return location.includes('id_token');
   }
 
 }
