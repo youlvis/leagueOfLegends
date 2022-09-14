@@ -13,7 +13,8 @@ export class NavbarComponent implements OnInit {
   }
 
   openLogin() {
-    window.open("https://login.lol-web.games", "_self");
+    window.open("https://login.lol-web.games/login?client_id=4ohv3cmaabbo91aduqpvg8o36j&response_type=token&scope=email+openid+phone&redirect_uri=https%3A%2F%2Flol-web.games",
+      "_self");
   }
 
   logging() {

@@ -1,6 +1,5 @@
 .cover {
     background: rgb(0, 9, 19);
-  
 }
 
 .custom-img {
@@ -12,6 +11,7 @@
 }
 
 .custom-img img {
+    margin-top: 50px;
     mask-image: linear-gradient(rgb(0, 0, 0) 65%, rgba(0, 0, 0, 0) 98%);
 }
 
@@ -39,6 +39,7 @@
     font-style: italic;
     font-size: 6.5vw;
     letter-spacing: 0.07em;
+    width: 100%;
 }
 
 .custom-data-champ {

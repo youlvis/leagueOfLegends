@@ -4,6 +4,9 @@ import { HabilityComponent } from './hability/hability.component';
 import { CoverChampComponent } from './cover-champ/cover-champ.component';
 import { SkinChampComponent } from './skin-champ/skin-champ.component';
 import { RouterModule } from '@angular/router';
+import { ModalChampComponent } from './modal-champ/modal-champ.component';
+import { EquipmentComponent } from './equipment/equipment.component';
+
 
 
 
@@ -12,6 +15,8 @@ import { RouterModule } from '@angular/router';
     HabilityComponent,
     CoverChampComponent,
     SkinChampComponent,
+    ModalChampComponent,
+    EquipmentComponent,
   ],
   imports: [
     CommonModule,

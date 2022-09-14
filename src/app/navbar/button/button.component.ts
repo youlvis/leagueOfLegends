@@ -1,8 +1,40 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { map } from 'rxjs/operators';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-button',
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.css']
 })
-export class ButtonComponent { }
+export class ButtonComponent implements OnInit {
+  userName: any;
+
+  constructor(private route: ActivatedRoute) { }
+
+  ngOnInit(): void {
+
+    this.route.fragment
+      .pipe(
+        map(fragment => new URLSearchParams(fragment)),
+        map(params => ({
+          access_token: params.get('access_token'),
+          id_token: params.get('id_token'),
+          error: params.get('error'),
+        }))
+      )
+      .subscribe(res => this.getPerfil(res.access_token, res.id_token));
+
+  }
+
+
+  getPerfil(accesToken: string, idToken: string): void {
+    console.log("accesToken", accesToken)
+    console.log("idToken", idToken)
+    const decode: any = jwt_decode(idToken);
+    this.userName = decode.email
+    console.log(this.userName)
+  }
+
+}

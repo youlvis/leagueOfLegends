@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalChampComponent } from '../modal-champ/modal-champ.component';
 
 
 
@@ -15,7 +17,7 @@ export class SkinChampComponent implements OnInit {
   @Input()
   champion: any;
 
-  constructor( ) {
+  constructor(public dialog: MatDialog) {
 
   }
 
@@ -52,6 +54,32 @@ export class SkinChampComponent implements OnInit {
     this.showSlides(this.slideIndex = n);
   }
 
+  skinAcquired() {
+    return false;
+  }
+
+  modalCompra(champ: any, index: number) {
+
+    if (index != 0) {
+      var dataFrase: string = "¡Elige un nuevo estilo para tu campeón!";
+    } else {
+      dataFrase = "¡Compra tu campeón!"
+    }
+    this.openModal(champ, dataFrase)
+  }
+
+  openModal(data: any, dataFrase: string) {
+    this.dialog.open(ModalChampComponent, {
+      disableClose: true,
+      width: '600px',
+      height: '600px',
+      panelClass: 'custom-dialog-container',
+      data: {
+        data,
+        dataFrase
+      }
+    });
+  }
 
 
 }
