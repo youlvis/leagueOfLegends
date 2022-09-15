@@ -81,7 +81,7 @@ export class EquipmentComponent implements OnInit {
   }
   //hacer la misma logica de los spells
   checkedItems(res: any, champ: string) {
-    
+
     if (res[champ]) {
 
       const checkboxItems01 = document.getElementById(
@@ -200,7 +200,7 @@ export class EquipmentComponent implements OnInit {
         this.formItems.value.checkArray[4],
         this.formItems.value.checkArray[5]]
 
-      this.userService.configureItems('amumu', element).subscribe(console.log)
+      this.userService.configureItems(this.champName.toLowerCase(), element).subscribe(console.log)
     }
 
     console.log(this.formItems.value.checkArray);
