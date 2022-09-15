@@ -52,7 +52,7 @@ export class EquipmentComponent implements OnInit {
     //comprar si el invocador tiene una configuracion de hechizos para el campeon en el que esta ubicado
     this.userService.getSpell().subscribe(res => this.checkedSpell(res, this.champName.toLowerCase()))
 
-    this.userService.getItems('amumu').subscribe(res => this.checkedItems(res, this.champName.toLowerCase()))
+    this.userService.getItems(this.champName.toLowerCase()).subscribe(res => this.checkedItems(res, this.champName.toLowerCase()))
 
   }
 
@@ -81,6 +81,7 @@ export class EquipmentComponent implements OnInit {
   }
   //hacer la misma logica de los spells
   checkedItems(res: any, champ: string) {
+    console.log(res.brand)
 
     if (res[champ]) {
 
@@ -203,7 +204,7 @@ export class EquipmentComponent implements OnInit {
       this.userService.configureItems(this.champName.toLowerCase(), element).subscribe(console.log)
     }
 
-    console.log(this.formItems.value.checkArray);
+    console.log( "elementos", element);
   }
 
 }
