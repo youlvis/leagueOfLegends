@@ -19,20 +19,44 @@ export class UserService {
   }
 
   getUserInfo() {
-
+    return this.http.post(`${this.baseUrl}/get-user-info`, { sub: localStorage.getItem('sub') },
+      {
+        headers: new HttpHeaders({
+          'content-type': 'aplication/json',
+          'Authorization': localStorage.getItem("idToken"),
+        })
+      }
+    )
   }
 
-  configureSpells() {
-
-  }
-
-  shopSkins() {
-    return this.http.post(`${this.baseUrl}/shop-skins`, {
-      headers: new HttpHeaders({
-        'content-type': 'aplication/json',
-        'Authorization': localStorage.getItem("idToken"),
+  configureSpells(champion: string, spell_principal: string, spell_secondary: string) {
+    return this.http.post(`${this.baseUrl}/configure-spells`, {
+      user: localStorage.getItem('sub'),
+      champion: champion,
+      spell_principal: spell_principal,
+      spell_secondary: spell_secondary
+    },
+      {
+        headers: new HttpHeaders({
+          'content-type': 'aplication/json',
+          'Authorization': localStorage.getItem("idToken"),
+        })
       })
-    }).subscribe(console.log)
+  }
+
+  shopSkins(championName: string, skinName: string, price: number) {
+    return this.http.post(`${this.baseUrl}/shop-skins`, {
+      userid: localStorage.getItem('sub'),
+      championName: championName,
+      skinName: skinName,
+      price: price
+    },
+      {
+        headers: new HttpHeaders({
+          'content-type': 'aplication/json',
+          'Authorization': localStorage.getItem("idToken"),
+        })
+      })
   }
 
   getSkin() {
@@ -57,5 +81,39 @@ export class UserService {
       }
     )
   }
+
+  getItems(champ: string) {
+    return this.http.get(`${this.baseUrl}/items?user=${localStorage.getItem('sub')}&champion=${champ}`,
+      {
+        headers: new HttpHeaders({
+          'content-type': 'aplication/json',
+          'Authorization': localStorage.getItem("idToken"),
+        })
+      }
+    )
+  }
+
+  configureItems(amumu: string, items: any) {
+    return this.http.post(`${this.baseUrl}/configure-items`,
+      {
+        user: localStorage.getItem('sub'),
+        champion: amumu,
+        items: [
+          items[0],
+          items[1],
+          items[2],
+          items[3],
+          items[4],
+          items[5]
+        ]
+      },
+      {
+        headers: new HttpHeaders({
+          'content-type': 'aplication/json',
+          'Authorization': localStorage.getItem("idToken"),
+        })
+      })
+  }
+
 
 }

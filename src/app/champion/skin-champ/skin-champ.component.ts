@@ -28,6 +28,7 @@ export class SkinChampComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    //servicio skin compradas
     this.userService.getSkin().subscribe(res => this.setDataSkin(res))
   }
 
@@ -61,7 +62,7 @@ export class SkinChampComponent implements OnInit {
   }
 
   skinAcquired(skin: string) {
-    console.log(skin)
+    //console.log(skin)
     if (document.getElementById(skin)) {
       const btncompra = document.getElementById(skin) as HTMLInputElement | null;
       btncompra.remove();
@@ -77,24 +78,24 @@ export class SkinChampComponent implements OnInit {
   }
 
   modalCompra(champ: any, index: number) {
-
     if (index != 0) {
       var dataFrase: string = "¡Elige un nuevo estilo para tu campeón!";
     } else {
       dataFrase = "¡Compra tu campeón!"
     }
+    // console.log(champ)
     this.openModal(champ, dataFrase)
   }
 
   openModal(data: any, dataFrase: string) {
     this.dialog.open(ModalChampComponent, {
-      disableClose: true,
       width: '600px',
       height: '600px',
       panelClass: 'custom-dialog-container',
       data: {
         data,
-        dataFrase
+        dataFrase,
+        nameChamp: this.champion[0].fields.title.toLowerCase()
       }
     });
   }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/service/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  userName: string;
+  rango: string;
+  coins: number;
+
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
+    //console.log("service")
+    this.userService.getUserInfo().subscribe(res => this.setPerfil(res) )
   }
 
   openLogin() {
@@ -17,9 +24,25 @@ export class NavbarComponent implements OnInit {
       "_self");
   }
 
+  setPerfil(res: any) {
+    this.userName= res.username
+    this.coins= res.coins
+    this.rango= res.level
+    localStorage.setItem('userName', this.userName)
+    localStorage.setItem('rango', this.rango)
+    localStorage.setItem('coins', this.coins.toString())
+  }
+
   logging() {
-    const location = window.location.href;
-    return location.includes('id_token');
+
+    if (localStorage.getItem('userName')) {
+      return true;
+    }
+    //this.userService.getUserInfo().subscribe(res => this.userName = res)
+    //console.log(this.userName)
+    //const location = window.location.href;
+    //return location.includes('id_token') || localStorage.getItem('sub');
+    return false;
   }
 
 }

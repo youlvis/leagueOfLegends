@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import jwt_decode from 'jwt-decode';
+import { UserService } from 'src/service/user.service';
 
 @Component({
   selector: 'app-button',
@@ -11,10 +12,10 @@ import jwt_decode from 'jwt-decode';
 export class ButtonComponent implements OnInit {
   userName: any;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private userService: UserService) { }
 
   ngOnInit(): void {
-
+    this.userName= localStorage.getItem('userName')
     this.route.fragment
       .pipe(
         map(fragment => new URLSearchParams(fragment)),
@@ -30,11 +31,11 @@ export class ButtonComponent implements OnInit {
 
 
   getPerfil(accesToken: string, idToken: string): void {
-    console.log("accesToken", accesToken)
-    console.log("idToken", idToken)
+    //console.log("accesToken", accesToken)
+    //console.log("idToken", idToken)
     const decode: any = jwt_decode(idToken);
-    console.log(decode.sub)
-    this.userName = decode.email;
+    //console.log(decode.sub)
+    //this.userName = decode.email;
 
     this.saveLocalStorage(idToken, idToken, decode.sub);
   }
@@ -43,8 +44,8 @@ export class ButtonComponent implements OnInit {
     localStorage.setItem("accesToken", accesToken);
     localStorage.setItem("idToken", idToken);
     localStorage.setItem('sub', sub)
-
-    console.log(localStorage.getItem('accesToken'))
+    
+    //console.log(localStorage.getItem('accesToken'))
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { UserService } from 'src/service/user.service';
 
 @Component({
   selector: 'app-modal-champ',
@@ -10,19 +11,25 @@ export class ModalChampComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog, private userService: UserService) { }
 
   ngOnInit(): void {
-    console.log(this.data)
+    this.userService.getUserInfo()
+    console.log(this.data.data.fields)
   }
 
-  closeModal(){
+  closeModal() {
     this.dialog.closeAll();
   }
 
-  buyChamp(){
-    
+  buyChamp() {
+    const nameSkin = this.data.data.fields.title.toLowerCase()
+    const price = parseInt(this.data.data.fields.description)
+    const nameChamp = this.data.nameChamp
+    this.userService.shopSkins(nameChamp, nameSkin, price).subscribe(console.log)
+    this.dialog.closeAll()
+    //location.reload()
   }
 
- 
+
 }

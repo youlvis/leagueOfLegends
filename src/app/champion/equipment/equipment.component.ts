@@ -52,6 +52,8 @@ export class EquipmentComponent implements OnInit {
     //comprar si el invocador tiene una configuracion de hechizos para el campeon en el que esta ubicado
     this.userService.getSpell().subscribe(res => this.checkedSpell(res, this.champName.toLowerCase()))
 
+    this.userService.getItems('amumu').subscribe(res => this.checkedItems(res, this.champName.toLowerCase()))
+
   }
 
 
@@ -69,14 +71,54 @@ export class EquipmentComponent implements OnInit {
 
       checkboxSpell01.checked = true;
       checkboxSpell02.checked = true;
-      
-      this.counterSpell= 2;
+
+      this.counterSpell = 2;
+
+      //this.formSpell.value.checkArray[0] = res[champ].spells[0];
+      //this.formSpell.value.checkArray[1] = res[champ].spells[1];
     }
 
   }
-//hacer la misma logica de los spells
-  checkedItems() {
+  //hacer la misma logica de los spells
+  checkedItems(res: any, champ: string) {
+    
+    if (res[champ]) {
 
+      const checkboxItems01 = document.getElementById(
+        `${res[champ].items[0]}`
+      ) as HTMLInputElement | null;
+
+      const checkboxItems02 = document.getElementById(
+        `${res[champ].items[1]}`
+      ) as HTMLInputElement | null;
+
+      const checkboxItems03 = document.getElementById(
+        `${res[champ].items[2]}`
+      ) as HTMLInputElement | null;
+      
+      const checkboxItems04 = document.getElementById(
+        `${res[champ].items[3]}`
+      ) as HTMLInputElement | null;
+
+      const checkboxItems05 = document.getElementById(
+        `${res[champ].items[4]}`
+      ) as HTMLInputElement | null;
+
+      const checkboxItems06 = document.getElementById(
+        `${res[champ].items[5]}`
+      ) as HTMLInputElement | null;
+
+      checkboxItems01.checked = true;
+      checkboxItems02.checked = true;
+      checkboxItems03.checked = true;
+      checkboxItems04.checked = true;
+      checkboxItems05.checked = true;
+      checkboxItems06.checked = true;
+
+      this.counterItems = 6;
+      //this.formSpell.value.checkArray[0] = res[champ].spells[0];
+      //this.formSpell.value.checkArray[1] = res[champ].spells[1];
+    }
   }
 
 
@@ -138,11 +180,29 @@ export class EquipmentComponent implements OnInit {
 
   submitFormSpell() {
     //integrar con la api TODO
-    console.log(this.formSpell.value.checkArray);
+    if (this.formSpell.value.checkArray.length == 2) {
+      this.userService.configureSpells(this.champName.toLowerCase(),
+        this.formSpell.value.checkArray[0], this.formSpell.value.checkArray[1])
+        .subscribe(console.log)
+    }
   }
 
   submitFormItems() {
     //integrar con la api TODO
+
+    if (this.formItems.value.checkArray.length == 6) {
+
+      var element = [
+        this.formItems.value.checkArray[0],
+        this.formItems.value.checkArray[1],
+        this.formItems.value.checkArray[2],
+        this.formItems.value.checkArray[3],
+        this.formItems.value.checkArray[4],
+        this.formItems.value.checkArray[5]]
+
+      this.userService.configureItems('amumu', element).subscribe(console.log)
+    }
+
     console.log(this.formItems.value.checkArray);
   }
 
