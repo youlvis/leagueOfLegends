@@ -20,6 +20,9 @@ export class ModalChampComponent implements OnInit {
     this.dialog.closeAll();
   }
 
+  buyChamp(){
+    
+  }
 
  
 }

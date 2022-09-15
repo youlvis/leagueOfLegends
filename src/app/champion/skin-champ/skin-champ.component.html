@@ -3,8 +3,8 @@
 
     <div *ngFor="let champ of champion; let i = index" class="mySlides fadeCustom">
 
-        <div class="buttomCustom" *ngIf="!skinAcquired()">
-            <button class="btn btn-light"  (click)="modalCompra(champ, i)" >Desbloquear</button>
+        <div class="buttomCustom">
+            <button id="{{champ.fields.title}}" class="btn btn-light"  (click)="modalCompra(champ, i)" >Desbloquear</button>
         </div>
 
         <div class="numbertext"> {{i+1}} / {{champion.length}} </div>

@@ -6,6 +6,7 @@ import { SkinChampComponent } from './skin-champ/skin-champ.component';
 import { RouterModule } from '@angular/router';
 import { ModalChampComponent } from './modal-champ/modal-champ.component';
 import { EquipmentComponent } from './equipment/equipment.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -20,7 +21,9 @@ import { EquipmentComponent } from './equipment/equipment.component';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   exports: [
     CoverChampComponent

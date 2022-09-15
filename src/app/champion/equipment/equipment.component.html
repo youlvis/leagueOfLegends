@@ -6,13 +6,12 @@
 
     <h2>Elige dos hechizos para el combate</h2>
 
-    <form action="">
+    <form [formGroup]="formSpell" (ngSubmit)="submitFormSpell()" novalidate>
         <div class="list container">
-            <button type="submit" class="btn btn-outline-dark">save</button>
-
             <div *ngFor="let spell of spells;" class="form-element">
                 <input type="checkbox" name="spell" value='{{spell.fields.hechizoname}}'
-                    id="{{spell.fields.hechizoname}}">
+                    id="{{spell.fields.hechizoname}}" (change)="checkedStateSpell($event, 2)"
+                    (change)="onCheckboxChange($event)" >
                 <label for='{{spell.fields.hechizoname}}'>
                     <div class="icon">
                         <img src='{{spell.fields.hechizoimage.fields.file.url}}' alt="{{spell.fields.hechizoname}}">
@@ -22,9 +21,9 @@
                     </div>
                 </label>
             </div>
+            <input class="btn btn-outline-dark buttonCustom" type="submit" value="Submit">
         </div>
     </form>
-
 
 </div>
 
@@ -34,12 +33,12 @@
 
     <h2>Elige seis items para el combate</h2>
 
-    <form action="">
+    <form [formGroup]="formItems" (ngSubmit)="submitFormItems()" novalidate>
         <div class="list container">
-            <button type="submit" class="btn btn-outline-dark">save</button>
 
             <div *ngFor="let item of items;" class="form-element">
-                <input type="checkbox" name="item" value='{{item.fields.name}}' id="{{item.fields.name}}">
+                <input type="checkbox" name="item" value='{{item.fields.name}}' id="{{item.fields.name}}"
+                    (change)="checkedStateItems($event, 6)" (change)="onCheckboxChangeItems($event)">
                 <label for='{{item.fields.name}}'>
                     <div class="icon">
                         <img src='{{item.fields.image.fields.file.url}}' alt="{{item.fields.name}}">
@@ -49,8 +48,12 @@
                     </div>
                 </label>
             </div>
+            <input class="btn btn-outline-dark buttonCustom" type="submit" value="Submit">
         </div>
     </form>
 
-
 </div>
+
+<pre>
+    {{checkedSpell | json}}
+</pre>

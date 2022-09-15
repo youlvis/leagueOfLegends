@@ -110,7 +110,7 @@ hr {
     margin-right: 200px;
 }
 
-button {
+.buttonCustom {
     position: absolute;
     border-radius: 5px;
     right: 13px;

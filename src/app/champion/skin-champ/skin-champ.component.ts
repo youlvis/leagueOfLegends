@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { data } from 'jquery';
+import { UserService } from 'src/service/user.service';
 import { ModalChampComponent } from '../modal-champ/modal-champ.component';
 
 
@@ -17,12 +19,16 @@ export class SkinChampComponent implements OnInit {
   @Input()
   champion: any;
 
-  constructor(public dialog: MatDialog) {
+  dataSkin: any = [];
+  skisArr: any = [];
+
+
+  constructor(public dialog: MatDialog, private userService: UserService) {
 
   }
 
   ngOnInit(): void {
-
+    this.userService.getSkin().subscribe(res => this.setDataSkin(res))
   }
 
   ngAfterViewInit(): void {
@@ -54,8 +60,20 @@ export class SkinChampComponent implements OnInit {
     this.showSlides(this.slideIndex = n);
   }
 
-  skinAcquired() {
-    return false;
+  skinAcquired(skin: string) {
+    console.log(skin)
+    if (document.getElementById(skin)) {
+      const btncompra = document.getElementById(skin) as HTMLInputElement | null;
+      btncompra.remove();
+      //console.log("existe", skin)
+    }
+  }
+
+  setDataSkin(res: any) {
+    this.dataSkin = res.Skins;
+    for (let i = 0; i < this.dataSkin.length; i++) {
+      this.skinAcquired(this.dataSkin[i].champion_skin.toUpperCase())
+    }
   }
 
   modalCompra(champ: any, index: number) {

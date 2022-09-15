@@ -33,8 +33,18 @@ export class ButtonComponent implements OnInit {
     console.log("accesToken", accesToken)
     console.log("idToken", idToken)
     const decode: any = jwt_decode(idToken);
-    this.userName = decode.email
-    console.log(this.userName)
+    console.log(decode.sub)
+    this.userName = decode.email;
+
+    this.saveLocalStorage(idToken, idToken, decode.sub);
+  }
+
+  saveLocalStorage(accesToken: string, idToken: string, sub: string) {
+    localStorage.setItem("accesToken", accesToken);
+    localStorage.setItem("idToken", idToken);
+    localStorage.setItem('sub', sub)
+
+    console.log(localStorage.getItem('accesToken'))
   }
 
 }
