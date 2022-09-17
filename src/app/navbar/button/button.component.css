@@ -1,5 +1,5 @@
 .btn-neon {
-    width: 100%;
+    width: 120%;
     height: 35px;
     padding-left: 5px;
     padding-right: 5px;
@@ -14,12 +14,6 @@
     margin: auto;
     cursor: context-menu;
     border-radius: 5px;
-}
-
-.btn-neon:hover {
-    background: #006680;
-    box-shadow: 0 0 10px #006680, 0 0 40px #006680, 0 0 80px #006680;
-    transition-delay: 1s;
 }
 
 .btn-neon span {
@@ -80,4 +74,20 @@
     bottom: 100%;
     transition: 1s;
     transition-delay: 0.75s;
+}
+
+.coins img {
+    margin-left: 12px;
+    margin-bottom: 5px;
+}
+
+.coins {
+    color: #fff;
+    margin-top: 4px;
+    font-size: 17px;
+    width: 200px;
+}
+
+p {
+    margin-right: 23px;
 }

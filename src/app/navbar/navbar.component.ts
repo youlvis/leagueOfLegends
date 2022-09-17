@@ -16,7 +16,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     //console.log("service")
-    this.userService.getUserInfo().subscribe(res => this.setPerfil(res) )
+    this.userService.getUserInfo().subscribe(res => this.setPerfil(res))
   }
 
   openLogin() {
@@ -25,9 +25,9 @@ export class NavbarComponent implements OnInit {
   }
 
   setPerfil(res: any) {
-    this.userName= res.username
-    this.coins= res.coins
-    this.rango= res.level
+    this.userName = res.username
+    this.coins = res.coins
+    this.rango = res.level
     localStorage.setItem('userName', this.userName)
     localStorage.setItem('rango', this.rango)
     localStorage.setItem('coins', this.coins.toString())
@@ -35,14 +35,15 @@ export class NavbarComponent implements OnInit {
 
   logging() {
 
-    if (localStorage.getItem('userName')) {
-      return true;
-    }
+    // if (localStorage.getItem('userName')) {
+    // return true;
+    // }
     //this.userService.getUserInfo().subscribe(res => this.userName = res)
     //console.log(this.userName)
-    //const location = window.location.href;
-    //return location.includes('id_token') || localStorage.getItem('sub');
-    return false;
+    //window.sessionStorage
+    const location = window.location.href;
+    return location.includes('id_token') || localStorage.getItem('sub');
+    //return false;
   }
 
 }

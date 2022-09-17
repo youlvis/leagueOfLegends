@@ -27,7 +27,7 @@
     transition: 1s;
 }
 
-.card:hover img{
+.card:hover img {
     transform: translate(-50%, -50%) scale(1);
 }
 
@@ -47,11 +47,19 @@
     transition: 1s;
 }
 
-.card:hover span{
+.card:hover span {
     padding: 10px 30px;
     background: #006680;
 }
 
-.margen{
+.unlockedChampion img {
+    position: absolute;
+    top: 36px;
+    left: 31px;
+    width: 40px;
+    height: 40px;
+}
+
+.margen {
     margin-top: 80px;
 }

@@ -11,11 +11,13 @@ import { UserService } from 'src/service/user.service';
 })
 export class ButtonComponent implements OnInit {
   userName: any;
+  coins: any;
 
   constructor(private route: ActivatedRoute, private userService: UserService) { }
 
   ngOnInit(): void {
     this.userName= localStorage.getItem('userName')
+    this.coins = localStorage.getItem('coins')
     this.route.fragment
       .pipe(
         map(fragment => new URLSearchParams(fragment)),
@@ -33,11 +35,13 @@ export class ButtonComponent implements OnInit {
   getPerfil(accesToken: string, idToken: string): void {
     //console.log("accesToken", accesToken)
     //console.log("idToken", idToken)
-    const decode: any = jwt_decode(idToken);
-    //console.log(decode.sub)
+     //console.log(decode.sub)
     //this.userName = decode.email;
-
-    this.saveLocalStorage(idToken, idToken, decode.sub);
+    if (accesToken!=null && idToken!=null) {
+      console.log("info")
+      const decode: any = jwt_decode(idToken);
+      this.saveLocalStorage(accesToken, idToken, decode.sub);
+    }
   }
 
   saveLocalStorage(accesToken: string, idToken: string, sub: string) {

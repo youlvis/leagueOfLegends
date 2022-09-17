@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { data } from 'jquery';
 import { UserService } from 'src/service/user.service';
@@ -9,7 +9,8 @@ import { ModalChampComponent } from '../modal-champ/modal-champ.component';
 @Component({
   selector: 'app-skin-champ',
   templateUrl: './skin-champ.component.html',
-  styleUrls: ['./skin-champ.component.css']
+  styleUrls: ['./skin-champ.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SkinChampComponent implements OnInit {
   slideIndex: number = 0;
@@ -23,17 +24,21 @@ export class SkinChampComponent implements OnInit {
   skisArr: any = [];
 
 
-  constructor(public dialog: MatDialog, private userService: UserService) {
+  constructor(public dialog: MatDialog, private userService: UserService, private cdr: ChangeDetectorRef) {
 
   }
 
   ngOnInit(): void {
     //servicio skin compradas
-    this.userService.getSkin().subscribe(res => this.setDataSkin(res))
+    this.userService.getSkin().subscribe(res => {
+      this.setDataSkin(res)
+      this.cdr.markForCheck();
+    })
   }
 
   ngAfterViewInit(): void {
     this.showSlides(this.champion.length + 1);
+    this.cdr.markForCheck();
   }
 
 
@@ -98,6 +103,7 @@ export class SkinChampComponent implements OnInit {
         nameChamp: this.champion[0].fields.title.toLowerCase()
       }
     });
+    
   }
 
 
