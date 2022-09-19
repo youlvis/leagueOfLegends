@@ -6,7 +6,7 @@
 
     <h2>Elige dos hechizos para el combate</h2>
 
-    <form [formGroup]="formSpell" (ngSubmit)="submitFormSpell()" novalidate>
+    <form [formGroup]="formSpell" (ngSubmit)="submitFormSpell($event)" novalidate>
         <div class="list container">
             <div *ngFor="let spell of spells;" class="form-element">
                 <input type="checkbox" name="spell" value='{{spell.fields.hechizoname}}'
@@ -33,7 +33,7 @@
 
     <h2>Elige seis items para el combate</h2>
 
-    <form [formGroup]="formItems" (ngSubmit)="submitFormItems()" novalidate>
+    <form [formGroup]="formItems" (ngSubmit)="submitFormItems($event)" novalidate>
         <div class="list container">
 
             <div *ngFor="let item of items;" class="form-element">

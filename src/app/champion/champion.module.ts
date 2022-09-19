@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { ModalChampComponent } from './modal-champ/modal-champ.component';
 import { EquipmentComponent } from './equipment/equipment.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 
@@ -23,7 +24,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatSnackBarModule
   ],
   exports: [
     CoverChampComponent

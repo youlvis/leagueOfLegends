@@ -60,7 +60,8 @@ export class UserService {
   }
 
   getSkin() {
-    return this.http.get(`${this.baseUrl}/skins?user=${localStorage.getItem('sub')}`,
+    return this.http
+    .get(`${this.baseUrl}/skins?user=${localStorage.getItem('sub')}`,
       {
         headers: new HttpHeaders({
           'content-type': 'aplication/json',
@@ -68,7 +69,6 @@ export class UserService {
         })
       }
     )
-
   }
 
   getSpell() {

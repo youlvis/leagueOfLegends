@@ -4,6 +4,8 @@ import { ContentfulService } from 'src/service/contentful.service';
 import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
 
 import { UserService } from "src/service/user.service";
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { event } from 'jquery';
 
 
 @Component({
@@ -30,6 +32,7 @@ export class EquipmentComponent implements OnInit {
 
   constructor(private contentfulService: ContentfulService,
     private fb: FormBuilder, private userService: UserService,
+    private _snackBar: MatSnackBar
   ) {
 
     this.formSpell = this.fb.group({
@@ -50,75 +53,84 @@ export class EquipmentComponent implements OnInit {
       .then(items => this.items = items)
 
     //comprar si el invocador tiene una configuracion de hechizos para el campeon en el que esta ubicado
-    this.userService.getSpell().subscribe(res => this.checkedSpell(res, this.champName.toLowerCase()))
+    this.userService.getSpell().subscribe(res => this.checkedSpell(res, this.champName.toLowerCase()),
+      error => this.checkedSpell(error, "Error"))
 
-    this.userService.getItems(this.champName.toLowerCase()).subscribe(res => this.checkedItems(res, this.champName.toLowerCase()))
+    this.userService.getItems(this.champName.toLowerCase()).subscribe(res => this.checkedItems(res, this.champName.toLowerCase()),
+      error => this.checkedItems(error, "Error"))
 
   }
 
 
   checkedSpell(res: any, champ: string) {
+    if (res.status != 401) {
+      if (res[champ]) {
 
-    if (res[champ]) {
+        const checkboxSpell01 = document.getElementById(
+          `${res[champ].spells[0]}`
+        ) as HTMLInputElement | null;
 
-      const checkboxSpell01 = document.getElementById(
-        `${res[champ].spells[0]}`
-      ) as HTMLInputElement | null;
+        const checkboxSpell02 = document.getElementById(
+          `${res[champ].spells[1]}`
+        ) as HTMLInputElement | null;
 
-      const checkboxSpell02 = document.getElementById(
-        `${res[champ].spells[1]}`
-      ) as HTMLInputElement | null;
+        checkboxSpell01.checked = true;
+        checkboxSpell02.checked = true;
+        
+        this.formSpell.value.checkArray.
 
-      checkboxSpell01.checked = true;
-      checkboxSpell02.checked = true;
+        console.log(checkboxSpell01)
 
-      this.counterSpell = 2;
+        this.counterSpell = 2;
 
-      //this.formSpell.value.checkArray[0] = res[champ].spells[0];
-      //this.formSpell.value.checkArray[1] = res[champ].spells[1];
+
+        //this.formSpell.value.checkArray[0] = res[champ].spells[0];
+        //this.formSpell.value.checkArray[1] = res[champ].spells[1];
+      }
     }
-
   }
   //hacer la misma logica de los spells
   checkedItems(res: any, champ: string) {
-    console.log(res.brand)
+    if (res.status != 401) {
+      if (res[champ]) {
 
-    if (res[champ]) {
+        const checkboxItems01 = document.getElementById(
+          `${res[champ].items[0]}`
+        ) as HTMLInputElement | null;
 
-      const checkboxItems01 = document.getElementById(
-        `${res[champ].items[0]}`
-      ) as HTMLInputElement | null;
+        const checkboxItems02 = document.getElementById(
+          `${res[champ].items[1]}`
+        ) as HTMLInputElement | null;
 
-      const checkboxItems02 = document.getElementById(
-        `${res[champ].items[1]}`
-      ) as HTMLInputElement | null;
+        const checkboxItems03 = document.getElementById(
+          `${res[champ].items[2]}`
+        ) as HTMLInputElement | null;
 
-      const checkboxItems03 = document.getElementById(
-        `${res[champ].items[2]}`
-      ) as HTMLInputElement | null;
-      
-      const checkboxItems04 = document.getElementById(
-        `${res[champ].items[3]}`
-      ) as HTMLInputElement | null;
+        const checkboxItems04 = document.getElementById(
+          `${res[champ].items[3]}`
+        ) as HTMLInputElement | null;
 
-      const checkboxItems05 = document.getElementById(
-        `${res[champ].items[4]}`
-      ) as HTMLInputElement | null;
+        const checkboxItems05 = document.getElementById(
+          `${res[champ].items[4]}`
+        ) as HTMLInputElement | null;
 
-      const checkboxItems06 = document.getElementById(
-        `${res[champ].items[5]}`
-      ) as HTMLInputElement | null;
+        const checkboxItems06 = document.getElementById(
+          `${res[champ].items[5]}`
+        ) as HTMLInputElement | null;
 
-      checkboxItems01.checked = true;
-      checkboxItems02.checked = true;
-      checkboxItems03.checked = true;
-      checkboxItems04.checked = true;
-      checkboxItems05.checked = true;
-      checkboxItems06.checked = true;
+        checkboxItems01.checked = true;
+        checkboxItems02.checked = true;
+        checkboxItems03.checked = true;
+        checkboxItems04.checked = true;
+        checkboxItems05.checked = true;
+        checkboxItems06.checked = true;
 
-      this.counterItems = 6;
-      //this.formSpell.value.checkArray[0] = res[champ].spells[0];
-      //this.formSpell.value.checkArray[1] = res[champ].spells[1];
+        this.counterItems = 6;
+        console.log(res[champ].items[0])
+        //this.formSpell.value.checkArray = res[champ].spells[0];
+        //this.formSpell.value.checkArray = res[champ].spells[1];
+        console.log(this.formSpell)
+      }
     }
   }
 
@@ -179,18 +191,20 @@ export class EquipmentComponent implements OnInit {
     }
   }
 
-  submitFormSpell() {
+  submitFormSpell(event) {
     //integrar con la api TODO
+    //console.log(event)
     if (this.formSpell.value.checkArray.length == 2) {
       this.userService.configureSpells(this.champName.toLowerCase(),
         this.formSpell.value.checkArray[0], this.formSpell.value.checkArray[1])
-        .subscribe(console.log)
+        .subscribe(res => this.openSnackBar("Configuracion de hechizos guardada", "OK"),
+          error => this.errorHandle(error))
     }
   }
 
-  submitFormItems() {
+  submitFormItems(event) {
     //integrar con la api TODO
-
+    //console.log(event)
     if (this.formItems.value.checkArray.length == 6) {
 
       var element = [
@@ -201,10 +215,25 @@ export class EquipmentComponent implements OnInit {
         this.formItems.value.checkArray[4],
         this.formItems.value.checkArray[5]]
 
-      this.userService.configureItems(this.champName.toLowerCase(), element).subscribe(console.log)
+      this.userService.configureItems(this.champName.toLowerCase(), element).subscribe(res => this.openSnackBar("Configuracion de items guardada","OK"),
+      error => this.errorHandle(error))
+
+    } else {
+      this.openSnackBar("Selecciona 6 items", "OK")
     }
 
-    console.log( "elementos", element);
+    console.log("elementos", element);
+
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
+  }
+
+  errorHandle(error: any) {
+    if (error.status == 401){
+      this.openSnackBar("Debe iniciar sesion para guardar","OK")
+    }
   }
 
 }

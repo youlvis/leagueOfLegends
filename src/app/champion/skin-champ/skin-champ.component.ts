@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { data } from 'jquery';
 import { UserService } from 'src/service/user.service';
 import { ModalChampComponent } from '../modal-champ/modal-champ.component';
 
@@ -32,8 +31,8 @@ export class SkinChampComponent implements OnInit {
     //servicio skin compradas
     this.userService.getSkin().subscribe(res => {
       this.setDataSkin(res)
-      this.cdr.markForCheck();
-    })
+    },
+      error => this.setDataSkin(error))
   }
 
   ngAfterViewInit(): void {
@@ -76,9 +75,12 @@ export class SkinChampComponent implements OnInit {
   }
 
   setDataSkin(res: any) {
-    this.dataSkin = res.Skins;
-    for (let i = 0; i < this.dataSkin.length; i++) {
-      this.skinAcquired(this.dataSkin[i].champion_skin.toUpperCase())
+    //console.log(res.status)
+    if (res.status != 401) {
+      this.dataSkin = res.Skins;
+      for (let i = 0; i < this.dataSkin.length; i++) {
+        this.skinAcquired(this.dataSkin[i].champion_skin.toUpperCase())
+      }
     }
   }
 
@@ -103,7 +105,7 @@ export class SkinChampComponent implements OnInit {
         nameChamp: this.champion[0].fields.title.toLowerCase()
       }
     });
-    
+
   }
 
 
